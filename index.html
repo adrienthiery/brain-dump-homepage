@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brain Dump — Voice Notes for Pebble</title>
+  <meta name="description" content="Capture thoughts instantly from your wrist. Brain Dump routes voice notes to Google Tasks, Notion, AI, or local reminders — all without touching your phone.">
+  <meta property="og:title" content="Brain Dump — Voice Notes for Pebble">
+  <meta property="og:description" content="Capture thoughts instantly from your wrist.">
+  <meta property="og:image" content="icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #ff9900;
+      --bg:     #0e0e0e;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --text:   #eeeeee;
+      --muted:  #888888;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 64px 24px 48px;
+      text-align: center;
+    }
+
+    .hero img.icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 24px;
+      image-rendering: pixelated;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero p.tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-primary { background: var(--orange); color: #000; }
+    .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+
+    /* ── SCREENSHOT ── */
+    .screenshot-wrap {
+      text-align: center;
+      padding: 0 24px 64px;
+    }
+    .screenshot-wrap img {
+      max-width: 200px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+
+    .features h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+      color: var(--orange);
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .feature-card .icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px;
+      margin-bottom: 64px;
+    }
+    .how-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .how h2 {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-text h3 { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
+    .step-text p  { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── DESTINATIONS ── */
+    .dests {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 64px;
+    }
+    .dests h2 {
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .dest-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .dest-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="icon.png" alt="Brain Dump icon" class="icon">
+    <h1>Brain <span>Dump</span></h1>
+    <p class="tagline">Capture thoughts instantly from your wrist — no phone, no fumbling, no friction.</p>
+    <div class="cta-group">
+      <a href="https://apps.rebble.io/en_US/application/4adb1901-432a-4713-aaf1-b048aa9a6d61" class="btn btn-primary">Get on Rebble Store</a>
+      <a href="https://github.com/adrienthiery/brain-dump" class="btn btn-secondary">View Source</a>
+    </div>
+  </section>
+
+  <!-- SCREENSHOT -->
+  <div class="screenshot-wrap">
+    <img src="screenshot.png" alt="Brain Dump on Pebble Time 2">
+  </div>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🎙️</div>
+        <h3>Dictate from your wrist</h3>
+        <p>Press the button, speak, done. Brain Dump uses Pebble's built-in microphone — no extra hardware needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚡</div>
+        <h3>Quick launch</h3>
+        <p>Assign Brain Dump as a quick-launch action on your watch face — one long press and you're dictating.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧠</div>
+        <h3>Smart routing</h3>
+        <p>NLP classifies your note on-device in milliseconds and sends it to the right place automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🤖</div>
+        <h3>Ask your AI</h3>
+        <p>Ask anything and get a concise reply on your watch. Works with NVIDIA, Groq, Ollama, Mistral, OpenRouter, and any OpenAI-compatible API.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📴</div>
+        <h3>Works offline</h3>
+        <p>Notes go to on-watch local reminders when there's no connection — nothing gets lost.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🔒</div>
+        <h3>No account required</h3>
+        <p>All routing logic runs locally on your phone. Bring your own keys for the services you already use.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="how-inner">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>Press the button on your Pebble</h3>
+            <p>The dictation session starts immediately. Speak your note naturally.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>Brain Dump classifies your intent</h3>
+            <p>"Remind me to call John" → Tasks. "What's the capital of Japan?" → AI. "Idea: dark mode toggle" → Notion.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>Your note lands in the right place</h3>
+            <p>Google Tasks, Notion, a custom webhook, or your on-watch list — instantly, without touching your phone.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h3>AI replies appear on your watch</h3>
+            <p>Concise answers formatted for the small screen. Follow-up questions keep context from the previous exchange.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="dests">
+    <h2>Where your notes can go</h2>
+    <div class="dest-list">
+      <div class="dest-pill">✅ Google Tasks</div>
+      <div class="dest-pill">📝 Notion</div>
+      <div class="dest-pill">🤖 AI Agent</div>
+      <div class="dest-pill">🔗 Custom Webhook</div>
+      <div class="dest-pill">📱 Local Reminders</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Made with ♥ for the Pebble community · <a href="https://github.com/adrienthiery/brain-dump">GitHub</a> · <a href="https://apps.rebble.io/en_US/application/4adb1901-432a-4713-aaf1-b048aa9a6d61">Rebble Store</a> · <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>

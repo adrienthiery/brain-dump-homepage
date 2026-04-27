@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Brain Dump</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #ff9900;
+      --bg:     #0e0e0e;
+      --card:   #1a1a1a;
+      --border: #2a2a2a;
+      --text:   #eeeeee;
+      --muted:  #888888;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: var(--orange); }
+    nav {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+    .updated { font-size: 0.85rem; color: var(--muted); margin-bottom: 40px; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 32px 0 10px; color: var(--orange); }
+    p  { font-size: 0.95rem; color: #ccc; margin-bottom: 12px; }
+    ul { font-size: 0.95rem; color: #ccc; margin: 8px 0 12px 20px; }
+    ul li { margin-bottom: 6px; }
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <nav><a href="index.html">← Brain Dump</a></nav>
+
+  <div class="content">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: April 27, 2026</p>
+
+    <p>Brain Dump is a Pebble smartwatch app built by Adrien Thiery. This policy explains what data the app accesses, where it goes, and what is never collected.</p>
+
+    <h2>What data the app processes</h2>
+    <p>Brain Dump processes the voice notes you dictate on your Pebble watch. Depending on the destinations you configure in settings, a note may be sent to:</p>
+    <ul>
+      <li><strong>Google Tasks</strong> — to create a task in your Google account</li>
+      <li><strong>Notion</strong> — to create a page in your Notion database</li>
+      <li><strong>An AI provider</strong> — to generate a reply (e.g. NVIDIA, Groq, Mistral, OpenRouter, or a local model via Ollama / LM Studio)</li>
+      <li><strong>A custom webhook URL</strong> — to a destination you configure yourself</li>
+      <li><strong>On-watch local storage</strong> — stored only on your Pebble device</li>
+    </ul>
+    <p>No note text is ever sent to any server operated by the developer.</p>
+
+    <h2>Google OAuth &amp; Google Tasks</h2>
+    <p>If you connect Google Tasks, Brain Dump uses OAuth 2.0 to request read/write access to your Google Tasks (<code>https://www.googleapis.com/auth/tasks</code>). The OAuth flow is:</p>
+    <ul>
+      <li>Initiated from the app's settings page on your phone</li>
+      <li>Completed in your system browser (Chrome or Safari)</li>
+      <li>Tokens (access token and refresh token) are stored locally in the Pebble app's settings storage on your phone — they are never transmitted to any third-party server</li>
+    </ul>
+    <p>Brain Dump only uses your Google Tasks access to create tasks. It does not read, list (beyond fetching your task list names for the settings dropdown), modify, or delete existing tasks.</p>
+    <p>You can revoke access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account permissions page</a> or by tapping Disconnect in the app settings.</p>
+
+    <h2>AI providers</h2>
+    <p>If you enable the AI Agent destination, the text of your note is sent to the AI provider you configure (e.g. NVIDIA NIM, Groq, Mistral, OpenRouter, or a local model). The API key you supply is stored locally on your phone and is never shared with anyone other than the provider you chose. Refer to your chosen provider's privacy policy for how they handle request data.</p>
+
+    <h2>Third-party services</h2>
+    <p>All third-party integrations (Google, Notion, webhooks, AI APIs) are <strong>opt-in</strong> and configured entirely by you. Brain Dump acts only as a local relay between your voice and the services you explicitly connect.</p>
+
+    <h2>Data collection</h2>
+    <p>The developer does not collect, store, or have access to:</p>
+    <ul>
+      <li>Your voice recordings or transcriptions</li>
+      <li>Your Google account data</li>
+      <li>Your Notion content</li>
+      <li>Your AI conversations</li>
+      <li>Any analytics, crash reports, or usage data</li>
+    </ul>
+
+    <h2>Children's privacy</h2>
+    <p>Brain Dump is not directed at children under 13 and does not knowingly collect information from them.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this URL with a new "Last updated" date.</p>
+
+    <h2>Contact</h2>
+    <p>Questions? Open an issue on <a href="https://github.com/adrienthiery/brain-dump" target="_blank">GitHub</a>.</p>
+  </div>
+
+  <footer>
+    <p>Brain Dump · <a href="index.html">Home</a></p>
+  </footer>
+
+</body>
+</html>
