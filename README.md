@@ -12,7 +12,7 @@ Static website for the **Brain Dump** Pebble app, hosted at [braindump.thiery.io
 ## App source code
 
 The Pebble app itself lives in a separate repository:
-[adrienthiery/pebble-watchface-agent-skill](https://github.com/adrienthiery/pebble-watchface-agent-skill) under the `brain-dump/` folder.
+[adrienthiery/pebble-watchface-agent-skill — brain-dump/](https://github.com/adrienthiery/pebble-watchface-agent-skill/tree/main/brain-dump)
 
 ## Hosting
 
