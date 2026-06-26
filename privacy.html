@@ -55,14 +55,14 @@
 
   <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 27, 2026</p>
+    <p class="updated">Last updated: June 26, 2026</p>
 
     <p>Brain Dump is a Pebble smartwatch app built by Adrien Thiery. This policy explains what data the app accesses, where it goes, and what is never collected.</p>
 
     <h2>What data the app processes</h2>
     <p>Brain Dump processes the voice notes you dictate on your Pebble watch. Depending on the destinations you configure in settings, a note may be sent to:</p>
     <ul>
-      <li><strong>Google Tasks</strong> — to create a task in your Google account</li>
+      <li><strong>Google Tasks</strong> — to create a task in your Google account, and to mark it completed when you delete the corresponding reminder on your watch</li>
       <li><strong>Notion</strong> — to create a page in your Notion database</li>
       <li><strong>An AI provider</strong> — to generate a reply (e.g. NVIDIA, Groq, Mistral, OpenRouter, or a local model via Ollama / LM Studio)</li>
       <li><strong>A custom webhook URL</strong> — to a destination you configure yourself</li>
@@ -70,15 +70,69 @@
     </ul>
     <p>No note text is ever sent to any server operated by the developer.</p>
 
-    <h2>Google OAuth &amp; Google Tasks</h2>
-    <p>If you connect Google Tasks, Brain Dump uses OAuth 2.0 to request read/write access to your Google Tasks (<code>https://www.googleapis.com/auth/tasks</code>). The OAuth flow is:</p>
+    <h2>Google user data</h2>
+    <p>Brain Dump is a Pebble smartwatch app that can optionally connect to <strong>Google Tasks</strong>. If you enable this integration, the sections below describe exactly how the app accesses, uses, stores, shares, and deletes Google user data, in compliance with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Services User Data Policy</a>.</p>
+    <p>Brain Dump requests a single OAuth scope: <code>https://www.googleapis.com/auth/tasks</code>. The app does <strong>not</strong> access Gmail, Google Drive, Google Calendar, Contacts, your Google profile, or any other Google service.</p>
+
+    <h2>Data accessed</h2>
+    <p>When you connect Google Tasks, Brain Dump may access the following Google user data:</p>
+    <ul>
+      <li><strong>OAuth credentials</strong> — an access token and refresh token issued by Google after you sign in and grant permission.</li>
+      <li><strong>Task list metadata</strong> — the names and internal IDs of your Google Task lists, fetched only when you open the app settings or tap Refresh next to the task-list picker.</li>
+      <li><strong>New task content you create</strong> — when you dictate a voice note routed to Google Tasks, the app sends a new task to Google containing the task title (derived from your note), and optionally a due date and a time note parsed from your speech. The app stores the Google-assigned task ID locally on your watch so it can update that task later.</li>
+      <li><strong>Task completion status</strong> — when you delete a reminder from the on-watch list that was previously sent to Google Tasks, the app updates that task in Google to mark it as completed.</li>
+    </ul>
+    <p>Brain Dump does <strong>not</strong> read or list the contents of your existing Google Tasks (beyond task list names for the settings picker). It does not permanently delete tasks in Google Tasks — removing a reminder on your watch marks the linked task as done in Google Tasks instead.</p>
+
+    <h2>Data usage</h2>
+    <p>Google user data is used solely to provide the Google Tasks integration you opt into:</p>
+    <ul>
+      <li><strong>Authentication</strong> — OAuth tokens are used to authenticate API requests to Google on your behalf.</li>
+      <li><strong>Task list selection</strong> — task list names and IDs are displayed in the settings screen so you can pick a destination list.</li>
+      <li><strong>Task creation</strong> — when you send a voice note to Google Tasks, the app calls the Google Tasks API to create one new task in the list you selected.</li>
+      <li><strong>Task completion</strong> — when you delete a reminder from your watch that was sent to Google Tasks, the app calls the Google Tasks API to mark that task as completed.</li>
+      <li><strong>Token refresh</strong> — the refresh token is used periodically to obtain a new access token so the integration keeps working without requiring you to sign in again.</li>
+    </ul>
+    <p>Google user data is <strong>not</strong> used for advertising, analytics, profiling, machine-learning model training, or any purpose unrelated to creating and completing tasks on your behalf.</p>
+
+    <h2>Data sharing</h2>
+    <p>Brain Dump does <strong>not</strong> sell, rent, or transfer Google user data to third parties.</p>
+    <ul>
+      <li><strong>Developer servers</strong> — Google user data is never sent to servers operated by the developer. All Google API calls are made directly from your phone (the Pebble companion app's JavaScript layer) to Google's servers.</li>
+      <li><strong>Google</strong> — data is transmitted only to Google via the official Google Tasks API and OAuth endpoints (<code>tasks.googleapis.com</code>, <code>oauth2.googleapis.com</code>, <code>accounts.google.com</code>) as required to authenticate, create tasks, and mark tasks as completed in your account.</li>
+      <li><strong>Other third parties</strong> — no other third party (including Notion, AI providers, webhooks, or analytics services) receives Google user data. Those integrations are separate and opt-in; they never receive your Google OAuth tokens or task data.</li>
+    </ul>
+
+    <h2>Data storage &amp; protection</h2>
+    <p>Google-related credentials and settings are stored <strong>locally on your phone and watch</strong>. On your phone, the Pebble app's settings storage (browser <code>localStorage</code> used by the companion settings page) holds your access token, refresh token, and selected task list ID. On your watch, local storage holds your on-watch reminders and, for items sent to Google Tasks, the associated Google task ID needed to mark them complete when you delete them from the watch.</p>
+    <ul>
+      <li>Tokens are never uploaded to, logged by, or accessible from any server run by the developer.</li>
+      <li>All communication with Google uses HTTPS.</li>
+      <li>OAuth sign-in uses PKCE (Proof Key for Code Exchange) to protect the authorization flow.</li>
+      <li>Tasks you create are stored in your Google Tasks account and are subject to <a href="https://policies.google.com/privacy" target="_blank">Google's privacy policy</a> and security practices.</li>
+    </ul>
+
+    <h2>Data retention &amp; deletion</h2>
+    <p><strong>Locally stored data (on your phone):</strong></p>
+    <ul>
+      <li>OAuth tokens and your selected task list ID are retained until you remove them.</li>
+      <li>To delete this data, tap <strong>Disconnect</strong> in the Brain Dump settings page under Google Tasks, then tap <strong>Save</strong>. This clears your stored tokens and disconnects the integration.</li>
+      <li>You can also revoke Brain Dump's access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account permissions page</a>, which invalidates the stored tokens.</li>
+    </ul>
+    <p><strong>Data in your Google account:</strong></p>
+    <ul>
+      <li>Tasks created by Brain Dump remain in your Google Tasks account until you delete them in Google Tasks or through any Google-provided deletion tools. If you delete the corresponding reminder on your watch, the task is marked as completed in Google Tasks but remains in your account until you remove it there.</li>
+      <li>Brain Dump does not retain copies of created tasks beyond what is stored in your Google account.</li>
+    </ul>
+    <p><strong>Requesting deletion:</strong> To request deletion of any data the developer may hold (the developer does not collect or store Google user data on its own servers), open an issue on <a href="https://github.com/adrienthiery/pebble-watchface-agent-skill/tree/main/brain-dump" target="_blank">GitHub</a> or contact the developer through that repository. For data stored in your Google account, use Google's account tools or delete the tasks directly in Google Tasks.</p>
+
+    <h2>Google OAuth connection flow</h2>
+    <p>Connecting Google Tasks is entirely optional. The OAuth flow works as follows:</p>
     <ul>
       <li>Initiated from the app's settings page on your phone</li>
       <li>Completed in your system browser (Chrome or Safari)</li>
-      <li>Tokens (access token and refresh token) are stored locally in the Pebble app's settings storage on your phone — they are never transmitted to any third-party server</li>
+      <li>After you grant permission, tokens are stored locally on your phone as described above</li>
     </ul>
-    <p>Brain Dump only uses your Google Tasks access to create tasks. It does not read, list (beyond fetching your task list names for the settings dropdown), modify, or delete existing tasks.</p>
-    <p>You can revoke access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank">Google Account permissions page</a> or by tapping Disconnect in the app settings.</p>
 
     <h2>AI providers</h2>
     <p>If you enable the AI Agent destination, the text of your note is sent to the AI provider you configure (e.g. NVIDIA NIM, Groq, Mistral, OpenRouter, or a local model). The API key you supply is stored locally on your phone and is never shared with anyone other than the provider you chose. Refer to your chosen provider's privacy policy for how they handle request data.</p>
