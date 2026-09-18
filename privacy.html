@@ -55,7 +55,7 @@
 
   <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: June 26, 2026</p>
+    <p class="updated">Last updated: September 18, 2026</p>
 
     <p>Brain Dump is a Pebble smartwatch app built by Adrien Thiery. This policy explains what data the app accesses, where it goes, and what is never collected.</p>
 
@@ -63,7 +63,12 @@
     <p>Brain Dump processes the voice notes you dictate on your Pebble watch. Depending on the destinations you configure in settings, a note may be sent to:</p>
     <ul>
       <li><strong>Google Tasks</strong> — to create a task in your Google account, and to mark it completed when you delete the corresponding reminder on your watch</li>
+      <li><strong>Todoist</strong> — to create a task in your Todoist account</li>
       <li><strong>Notion</strong> — to create a page in your Notion database</li>
+      <li><strong>Nextcloud Notes or Nextcloud Tasks</strong> — to create a note or a task on the Nextcloud server you configure</li>
+      <li><strong>Joplin</strong> — to create a note on the Joplin client you configure (its Web Clipper service)</li>
+      <li><strong>Discord</strong> — to post a message through the channel webhook you configure</li>
+      <li><strong>The Pebble timeline</strong> — to pin a reminder to your watch. The request is addressed to the timeline web API; the Core Devices Pebble app handles it on your phone without contacting a server, while the Rebble app sends it to Rebble's timeline service</li>
       <li><strong>An AI provider</strong> — to generate a reply (e.g. NVIDIA, Groq, Mistral, OpenRouter, or a local model via Ollama / LM Studio)</li>
       <li><strong>A custom webhook URL</strong> — to a destination you configure yourself</li>
       <li><strong>On-watch local storage</strong> — stored only on your Pebble device</li>
@@ -100,7 +105,7 @@
     <ul>
       <li><strong>Developer servers</strong> — Google user data is never sent to servers operated by the developer. All Google API calls are made directly from your phone (the Pebble companion app's JavaScript layer) to Google's servers.</li>
       <li><strong>Google</strong> — data is transmitted only to Google via the official Google Tasks API and OAuth endpoints (<code>tasks.googleapis.com</code>, <code>oauth2.googleapis.com</code>, <code>accounts.google.com</code>) as required to authenticate, create tasks, and mark tasks as completed in your account.</li>
-      <li><strong>Other third parties</strong> — no other third party (including Notion, AI providers, webhooks, or analytics services) receives Google user data. Those integrations are separate and opt-in; they never receive your Google OAuth tokens or task data.</li>
+      <li><strong>Other third parties</strong> — no other third party (including Todoist, Notion, Nextcloud, Joplin, Discord, the Pebble timeline, AI providers, webhooks, or analytics services) receives Google user data. Those integrations are separate and opt-in; they never receive your Google OAuth tokens or task data. If you turn on the optional timeline reminder for Google Tasks, the note's own text and time are pinned to your watch's timeline as described above — your Google tokens and task IDs are not.</li>
     </ul>
 
     <h2>Data storage &amp; protection</h2>
@@ -138,7 +143,7 @@
     <p>If you enable the AI Agent destination, the text of your note is sent to the AI provider you configure (e.g. NVIDIA NIM, Groq, Mistral, OpenRouter, or a local model). The API key you supply is stored locally on your phone and is never shared with anyone other than the provider you chose. Refer to your chosen provider's privacy policy for how they handle request data.</p>
 
     <h2>Third-party services</h2>
-    <p>All third-party integrations (Google, Notion, webhooks, AI APIs) are <strong>opt-in</strong> and configured entirely by you. Brain Dump acts only as a local relay between your voice and the services you explicitly connect.</p>
+    <p>All third-party integrations (Google, Todoist, Notion, Nextcloud, Joplin, Discord, the Pebble timeline, webhooks, AI APIs) are <strong>opt-in</strong> and configured entirely by you. Brain Dump acts only as a local relay between your voice and the services you explicitly connect.</p>
 
     <h2>Data collection</h2>
     <p>The developer does not collect, store, or have access to:</p>
@@ -146,6 +151,8 @@
       <li>Your voice recordings or transcriptions</li>
       <li>Your Google account data</li>
       <li>Your Notion content</li>
+      <li>Your Todoist, Nextcloud, Joplin or Discord content</li>
+      <li>Your timeline pins and reminders</li>
       <li>Your AI conversations</li>
       <li>Any analytics, crash reports, or usage data</li>
     </ul>
