@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Brain Dump — Voice Notes for Pebble</title>
-  <meta name="description" content="Capture thoughts instantly from your wrist. Brain Dump routes voice notes to Google Tasks, Notion, AI, or local reminders — all without touching your phone.">
+  <meta name="description"
+    content="Capture thoughts instantly from your wrist. Brain Dump routes voice notes to Google Tasks, Notion, AI, or local reminders — all without touching your phone.">
   <meta property="og:title" content="Brain Dump — Voice Notes for Pebble">
   <meta property="og:description" content="Capture thoughts instantly from your wrist.">
   <meta property="og:image" content="https://braindump.thiery.io/icon.png">
   <meta property="og:url" content="https://braindump.thiery.io/">
   <link rel="canonical" href="https://braindump.thiery.io/">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
       --orange: #ff9900;
-      --bg:     #0e0e0e;
-      --card:   #1a1a1a;
+      --bg: #0e0e0e;
+      --card: #1a1a1a;
       --border: #2a2a2a;
-      --text:   #eeeeee;
-      --muted:  #888888;
+      --text: #eeeeee;
+      --muted: #888888;
     }
 
     body {
@@ -29,8 +37,14 @@
       line-height: 1.6;
     }
 
-    a { color: var(--orange); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -55,7 +69,9 @@
       margin-bottom: 8px;
     }
 
-    .hero h1 span { color: var(--orange); }
+    .hero h1 span {
+      color: var(--orange);
+    }
 
     .hero p.tagline {
       font-size: 1.15rem;
@@ -79,20 +95,34 @@
       font-weight: 600;
       transition: opacity 0.15s;
     }
-    .btn:hover { opacity: 0.85; text-decoration: none; }
-    .btn-primary { background: var(--orange); color: #000; }
-    .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+
+    .btn:hover {
+      opacity: 0.85;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
 
     /* ── SCREENSHOT ── */
     .screenshot-wrap {
       text-align: center;
       padding: 0 24px 64px;
     }
+
     .screenshot-wrap img {
       max-width: 200px;
       border-radius: 12px;
       border: 1px solid var(--border);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
     }
 
     /* ── FEATURES ── */
@@ -126,9 +156,21 @@
       padding: 20px;
     }
 
-    .feature-card .icon { font-size: 1.6rem; margin-bottom: 10px; }
-    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
-    .feature-card p { font-size: 0.88rem; color: var(--muted); }
+    .feature-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
 
     /* ── HOW IT WORKS ── */
     .how {
@@ -138,10 +180,12 @@
       padding: 48px 24px;
       margin-bottom: 64px;
     }
+
     .how-inner {
       max-width: 720px;
       margin: 0 auto;
     }
+
     .how h2 {
       font-size: 0.8rem;
       letter-spacing: 2px;
@@ -150,16 +194,19 @@
       text-align: center;
       margin-bottom: 32px;
     }
+
     .steps {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
+
     .step {
       display: flex;
       gap: 16px;
       align-items: flex-start;
     }
+
     .step-num {
       flex-shrink: 0;
       width: 32px;
@@ -173,8 +220,17 @@
       align-items: center;
       justify-content: center;
     }
-    .step-text h3 { font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
-    .step-text p  { font-size: 0.88rem; color: var(--muted); }
+
+    .step-text h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .step-text p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
 
     /* ── DESTINATIONS ── */
     .dests {
@@ -182,6 +238,7 @@
       margin: 0 auto;
       padding: 0 24px 64px;
     }
+
     .dests h2 {
       font-size: 0.8rem;
       letter-spacing: 2px;
@@ -190,12 +247,14 @@
       text-align: center;
       margin-bottom: 24px;
     }
+
     .dest-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
     }
+
     .dest-pill {
       background: var(--card);
       border: 1px solid var(--border);
@@ -217,6 +276,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- HERO -->
@@ -226,7 +286,7 @@
     <p class="tagline">Capture thoughts instantly from your wrist — no phone, no fumbling, no friction.</p>
     <div class="cta-group">
       <a href="https://apps.repebble.com/e4f66f24bb0a440b9f6aad69" class="btn btn-primary">Get on Repebble Store</a>
-      <a href="https://github.com/adrienthiery/pebble-watchface-agent-skill/tree/main/brain-dump" class="btn btn-secondary">View Source</a>
+      <a href="https://github.com/adrienthiery/pebble-brain-dump-app/" class="btn btn-secondary">View Source</a>
     </div>
   </section>
 
@@ -257,7 +317,8 @@
       <div class="feature-card">
         <div class="icon">🤖</div>
         <h3>Ask your AI</h3>
-        <p>Ask anything and get a concise reply on your watch. Works with NVIDIA, Groq, Ollama, Mistral, OpenRouter, and any OpenAI-compatible API.</p>
+        <p>Ask anything and get a concise reply on your watch. Works with NVIDIA, Groq, Ollama, Mistral, OpenRouter, and
+          any OpenAI-compatible API.</p>
       </div>
       <div class="feature-card">
         <div class="icon">📴</div>
@@ -288,21 +349,24 @@
           <div class="step-num">2</div>
           <div class="step-text">
             <h3>Brain Dump classifies your intent</h3>
-            <p>"Remind me to call John" → Tasks. "What's the capital of Japan?" → AI. "Idea: dark mode toggle" → Notion.</p>
+            <p>"Remind me to call John" → Tasks. "What's the capital of Japan?" → AI. "Idea: dark mode toggle" → Notion.
+            </p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-text">
             <h3>Your note lands in the right place</h3>
-            <p>Google Tasks, Notion, a custom webhook, or your on-watch list — instantly, without touching your phone.</p>
+            <p>Google Tasks, Notion, a custom webhook, or your on-watch list — instantly, without touching your phone.
+            </p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">4</div>
           <div class="step-text">
             <h3>AI replies appear on your watch</h3>
-            <p>Concise answers formatted for the small screen. Follow-up questions keep context from the previous exchange.</p>
+            <p>Concise answers formatted for the small screen. Follow-up questions keep context from the previous
+              exchange.</p>
           </div>
         </div>
       </div>
@@ -323,8 +387,12 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Made with ♥ for the Pebble community · <a href="https://github.com/adrienthiery/pebble-watchface-agent-skill/tree/main/brain-dump">GitHub</a> · <a href="https://apps.repebble.com/e4f66f24bb0a440b9f6aad69">Repebble Store</a> · <a href="privacy.html">Privacy Policy</a></p>
+    <p>Made with ♥ for the Pebble community · <a
+        href="https://github.com/adrienthiery/pebble-watchface-agent-skill/tree/main/brain-dump">GitHub</a> · <a
+        href="https://apps.repebble.com/e4f66f24bb0a440b9f6aad69">Repebble Store</a> · <a href="privacy.html">Privacy
+        Policy</a></p>
   </footer>
 
 </body>
+
 </html>
